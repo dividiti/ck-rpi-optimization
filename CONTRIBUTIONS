@@ -1,0 +1,20 @@
+CK-Caffe is provided under a standard (3-clause) BSD license.
+
+Contributions (as pull requests or patches) are most welcome)! 
+Please document them below.
+
+================================================================================
+N: Grigori Fursin
+E: grigori@dividiti.com
+H: http://fursin.net/research
+O: dividiti / cTuning foundation
+C: Implementation, CK support.
+W:
+
+================================================================================
+N: Anton Lokhmotov
+E: anton@dividiti.com
+H: https://www.hipeac.net/~anton
+O: dividiti
+C: Concept, implementation.
+W:

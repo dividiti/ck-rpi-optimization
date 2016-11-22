@@ -1,0 +1,10 @@
+{
+  "data_alias": "ck-zlib",
+  "dict": {
+    "shared": "git",
+    "url": "https://github.com/dividiti/ck-zlib"
+  },
+  "data_uoa": "ck-zlib",
+  "data_name": "Collaborative, CK-powered optimization of zlib-based applications",
+  "data_uid": "4439c9443bbab749"
+}
