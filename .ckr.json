@@ -2,7 +2,12 @@
   "data_alias": "ck-zlib",
   "dict": {
     "shared": "git",
-    "url": "https://github.com/dividiti/ck-zlib"
+    "url": "https://github.com/dividiti/ck-zlib",
+     "repo_deps": [
+       {
+         "repo_uoa": "ck-crowdtuning"
+       }
+     ]
   },
   "data_uoa": "ck-zlib",
   "data_name": "Collaborative, CK-powered optimization of zlib-based applications",
