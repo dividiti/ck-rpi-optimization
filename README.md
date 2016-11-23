@@ -27,7 +27,7 @@ Install CK:
  $ sudo pip install ck
 ```
 
-Install this  CK repository:
+Install this CK repository:
 
 ```
  $ ck pull repo --url=https://github.com/dividiti/ck-zlib
