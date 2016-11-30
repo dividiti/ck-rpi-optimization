@@ -26,18 +26,26 @@
   "run_cmds": {
     "decode": {
       "dataset_tags": [
-        "gzip", 
+        "deflate", 
+        "zlib", 
         "archiver", 
         "dataset"
       ], 
       "hot_functions": [], 
       "ignore_return_code": "no", 
       "run_time": {
-        "run_cmd_main": "$#BIN_FILE#$ -d -c $#dataset_path#$$#dataset_filename#$", 
+        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "run_cmd_main": "$#BIN_FILE#$ --decode $#dataset_path#$$#dataset_filename#$", 
         "run_cmd_out1": "tmp-output1.tmp", 
         "run_cmd_out2": "tmp-output2.tmp",
-        "run_correctness_output_files": [], 
-        "run_output_files": []
+        "run_correctness_output_files": [
+          "tmp-output.tmp", 
+          "tmp-output2.tmp"
+        ], 
+        "run_output_files": [
+          "tmp-output.tmp", 
+          "tmp-ck-timer.json"
+        ]
       }
     }, 
     "encode": {
@@ -47,11 +55,18 @@
       "hot_functions": [], 
       "ignore_return_code": "no", 
       "run_time": {
-        "run_cmd_main": "$#BIN_FILE#$ -c $#dataset_path#$$#dataset_filename#$", 
+        "fine_grain_timer_file": "tmp-ck-timer.json", 
+        "run_cmd_main": "$#BIN_FILE#$ --encode $#dataset_path#$$#dataset_filename#$", 
         "run_cmd_out1": "tmp-output1.tmp", 
         "run_cmd_out2": "tmp-output2.tmp",
-        "run_correctness_output_files": [], 
-        "run_output_files": []
+        "run_correctness_output_files": [
+          "tmp-output.tmp", 
+          "tmp-output2.tmp"
+        ], 
+        "run_output_files": [
+          "tmp-output.tmp", 
+          "tmp-ck-timer.json"
+        ]
       }
     }
   }, 
@@ -74,7 +89,7 @@
     "trees.c",
     "uncompr.c",
     "zutil.c",
-    "minigzip.c"
+    "ctuning-rtl.c"
   ], 
   "tags": [
     "zlib", 
@@ -85,6 +100,5 @@
     "small", 
     "crowd-tuning"
   ], 
-  "skip_bin_ext": "yes", 
-  "target_file": "minigzip"
+  "target_file": "a"
 }

@@ -3,3 +3,4 @@
 *.pyc
 *_tmp.json
 .ipynb_checkpoints/
+sftp-config.json
