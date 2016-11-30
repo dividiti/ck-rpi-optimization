@@ -1,0 +1,11 @@
+{
+  "dataset_files": [
+    "image-tiff-0001-deflated"
+  ], 
+  "tags": [
+    "deflated", 
+    "zlib", 
+    "archiver", 
+    "dataset"
+  ]
+}

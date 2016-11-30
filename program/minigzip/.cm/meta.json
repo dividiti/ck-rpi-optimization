@@ -26,7 +26,7 @@
   "run_cmds": {
     "decode": {
       "dataset_tags": [
-        "deflate", 
+        "deflated", 
         "zlib", 
         "archiver", 
         "dataset"
