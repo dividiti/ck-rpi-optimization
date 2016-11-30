@@ -184,8 +184,10 @@ int main(int argc, char* argv[])
   int ct_return=0;
 
   int decode;
-  char* file;
-  FILE* fp;
+  char* source_file;
+  char* dest_file;
+  FILE* source_fp;
+  FILE* dest_fp;
 
 #ifdef OPENME
   openme_init(NULL,NULL,NULL,0);
@@ -204,8 +206,8 @@ int main(int argc, char* argv[])
   xopenme_clock_start(0);
 #endif
 
-  if (argc != 3) {
-    fputs("usage: < --decode | --encode > < source >\n", stderr);
+  if (argc != 4) {
+    fputs("usage: < --decode | --encode > < source > < dest >\n", stderr);
     ct_return = 1;
     goto end;
   }
@@ -214,24 +216,38 @@ int main(int argc, char* argv[])
   } else if (strcmp(argv[1], "--encode") == 0) {
     decode = 0;
   } else {
-    fputs("usage: < --decode | --encode > < source >\n", stderr);
+    fputs("usage: < --decode | --encode > < source > < dest >\n", stderr);
     ct_return = 1;
     goto end;
   }
-  file = argv[2];
+  source_file = argv[2];
+  dest_file = argv[3];
 
   /* avoid end-of-line conversions */
   SET_BINARY_MODE(stdin);
   SET_BINARY_MODE(stdout);
 
   for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
-    fp = fopen(file, "rb");
-    if (decode) {
-      ct_return = inf(fp, stdout);
-    } else {
-      ct_return = def(fp, stdout, Z_DEFAULT_COMPRESSION);
+    source_fp = fopen(source_file, "rb");
+    if (NULL == source_fp) {
+      fputs("Failed to open source file\n", stderr);
+      ct_return = 1;
+      goto end;
     }
-    fclose(fp);
+    dest_fp = fopen(dest_file, "wb");
+    if (NULL == dest_fp) {
+      fputs("Failed to open dest file\n", stderr);
+      fclose(source_fp);
+      ct_return = 1;
+      goto end;
+    }
+    if (decode) {
+      ct_return = inf(source_fp, dest_fp);
+    } else {
+      ct_return = def(source_fp, dest_fp, Z_DEFAULT_COMPRESSION);
+    }
+    fclose(source_fp);
+    fclose(dest_fp);
   }
 
 end:
