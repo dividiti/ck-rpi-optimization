@@ -6,6 +6,7 @@
     "deflated", 
     "zlib", 
     "archiver", 
+    "small",
     "dataset"
   ]
 }
