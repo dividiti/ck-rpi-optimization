@@ -1,5 +1,5 @@
 {
-  "backup_data_uid": "e8d01a4607b6e3ee", 
+  "backup_data_uid": "c4fb948b4a75a0d6", 
   "build_compiler_vars": {
     "XOPENME": ""
   }, 
@@ -18,7 +18,7 @@
     }
   }, 
   "compiler_env": "CK_CC", 
-  "data_name": "zlib-inflate", 
+  "data_name": "zlib", 
   "extra_ld_vars": "$<<CK_EXTRA_LIB_M>>$", 
   "main_language": "c", 
   "process_in_tmp": "yes", 
@@ -53,19 +53,19 @@
           "tmp-ck-timer.json"
         ]
       }
-    },
+    }, 
     "encode": {
       "dataset_tags": [
-        "dataset",
+        "dataset", 
         "small"
       ], 
       "hot_functions": [
         {
           "name": "longest_match", 
           "percent": "60"
-        },
+        }, 
         {
-          "name": "deflate_slow",
+          "name": "deflate_slow", 
           "percent": "30"
         }
       ], 
@@ -84,7 +84,7 @@
           "tmp-ck-timer.json"
         ]
       }
-    }    
+    }
   }, 
   "run_vars": {
     "CT_REPEAT_MAIN": "1"
