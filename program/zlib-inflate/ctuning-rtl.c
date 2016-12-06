@@ -24,6 +24,55 @@
 
 #define CHUNK 16384
 
+/* Compress from file source to file dest until EOF on source.
+   def() returns Z_OK on success, Z_MEM_ERROR if memory could not be
+   allocated for processing, Z_STREAM_ERROR if an invalid compression
+   level is supplied, Z_VERSION_ERROR if the version of zlib.h and the
+   version of the library linked do not match, or Z_ERRNO if there is
+   an error reading or writing the files. */
+int def(unsigned char* buf, long buf_size, long* foo)
+{
+    int ret, flush;
+    unsigned have;
+    z_stream strm;
+    unsigned char out[CHUNK];
+    int level = Z_DEFAULT_COMPRESSION;
+
+    /* allocate deflate state */
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    ret = deflateInit(&strm, level);
+    if (ret != Z_OK)
+        return ret;
+
+    /* compress until end of file */
+    long pos = 0;
+    do {
+        strm.avail_in = pos + CHUNK < buf_size ? CHUNK : (uInt)(buf_size - pos);
+        strm.next_in = buf + pos;
+        pos += strm.avail_in;
+        flush = pos >= buf_size ? Z_FINISH : Z_NO_FLUSH;
+
+        /* run deflate() on input until output buffer not full, finish
+           compression if all of source has been read in */
+        do {
+            strm.avail_out = CHUNK;
+            strm.next_out = out;
+            ret = deflate(&strm, flush);    /* no bad return value */
+            *foo += CHUNK - strm.avail_out; 
+        } while (strm.avail_out == 0);
+        assert(strm.avail_in == 0);     /* all input will be used */
+
+        /* done when last data in file processed */
+    } while (flush != Z_FINISH);
+    assert(ret == Z_STREAM_END);        /* stream will be complete */
+
+    /* clean up and return */
+    (void)deflateEnd(&strm);
+    return Z_OK;
+}
+
 /* Decompress from file source to file dest until stream ends or EOF.
    inf() returns Z_OK on success, Z_MEM_ERROR if memory could not be
    allocated for processing, Z_DATA_ERROR if the deflate data is
@@ -133,6 +182,7 @@ int main(int argc, char* argv[])
   unsigned char* buf = NULL;
   long buf_size = 0;
   long foo = 0;
+  int decode;
 
 #ifdef OPENME
   openme_init(NULL,NULL,NULL,0);
@@ -144,29 +194,41 @@ int main(int argc, char* argv[])
 
   if (getenv("CT_REPEAT_MAIN")!=NULL) ct_repeat_max=atol(getenv("CT_REPEAT_MAIN"));
               
-  if (argc != 2) {
-    fputs("usage: < source >\n", stderr);
+  if (argc != 3) {
+    fputs("usage: < --encode | --decode > < source >\n", stderr);
     ct_return = 1;
-    goto end;
+    goto program_end;
   }
-  source_file = argv[1];
+  if (strcmp(argv[1], "--decode") == 0) {
+    decode = 1;
+  } else if (strcmp(argv[1], "--encode") == 0) {
+    decode = 0;
+  } else {
+    fputs("usage: < --decode | --encode > < source >\n", stderr);
+    ct_return = 1;
+    goto program_end;
+  }
+  source_file = argv[2];
 
   source_fp = fopen(source_file, "rb");
   if (NULL == source_fp) {
     fputs("Failed to open source file\n", stderr);
     ct_return = 1;
-    goto end;
+    goto program_end;
   }
 
   buf = read_file(source_fp, &buf_size);
   if (NULL == buf) {
     fputs("Failed to read source file (probably, it's too big to fit in memory or inaccessible)\n", stderr);
     ct_return = 1;
-    goto end;
+    goto program_end;
   }
 
   fclose(source_fp);
   source_fp = NULL;
+
+  int (*func)(unsigned char*, long, long*);
+  func = decode ? &inf : &def;
 
 #ifdef OPENME
   openme_callback("KERNEL_START", NULL);
@@ -176,14 +238,14 @@ int main(int argc, char* argv[])
 #endif
 
   for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
-    ct_return = inf(buf, buf_size, &foo);
+    ct_return = func(buf, buf_size, &foo);
     if (0 != ct_return) {
       zerr(ct_return);
-      goto end;
+      goto kernel_end;
     }
   }
 
-end:
+kernel_end:
 
 #ifdef XOPENME
   xopenme_clock_end(0);
@@ -194,6 +256,8 @@ end:
 
   printf("Foo: %ld\n", foo);
     
+program_end:
+
   if (NULL != source_fp) {
     fclose(source_fp);
   }
