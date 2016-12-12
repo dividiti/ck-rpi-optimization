@@ -1,0 +1,21 @@
+{
+  "backup_data_uid": "ac8345f646e6b1d9", 
+  "backup_module_uid": "8a7141c59cd335f5", 
+  "backup_module_uoa": "dataset", 
+  "control": {
+    "author": "cTuning foundation", 
+    "author_email": "admin@cTuning.org", 
+    "author_webpage": "http://cTuning.org", 
+    "copyright": "See CK COPYRIGHT.txt for copyright details", 
+    "engine": "CK", 
+    "iso_datetime": "2016-12-12T20:17:29.243698", 
+    "license": "See CK LICENSE.txt for licensing details", 
+    "version": [
+      "1", 
+      "8", 
+      "4", 
+      "2"
+    ]
+  }, 
+  "data_name": "txt-verse-novel-0001-gzipped"
+}

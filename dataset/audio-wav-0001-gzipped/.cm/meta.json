@@ -1,0 +1,11 @@
+{
+  "dataset_files": [
+    "data.wav.gz"
+  ], 
+  "tags": [
+    "gzip", 
+    "archiver", 
+    "small", 
+    "dataset"
+  ]
+}
