@@ -58,7 +58,7 @@
       ], 
       "hot_functions": [
         {
-          "name": "deflate", 
+          "name": "longest_match", 
           "percent": "70"
         }
       ], 

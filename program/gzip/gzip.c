@@ -611,7 +611,8 @@ int main1 (argc, argv)
 
 char** copy_array(int argc, char* argv[]) {
   char** new_argv = malloc((argc+1) * sizeof *new_argv);
-  for(int i = 0; i < argc; ++i)
+  int i;
+  for(i = 0; i < argc; ++i)
   {
       size_t length = strlen(argv[i])+1;
       new_argv[i] = malloc(length);
@@ -622,7 +623,8 @@ char** copy_array(int argc, char* argv[]) {
 }
 
 void free_array(int argc, char** new_argv) {
-  for(int i = 0; i < argc; ++i)
+  int i;
+  for(i = 0; i < argc; ++i)
   {
     free(new_argv[i]);
   }
