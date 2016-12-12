@@ -609,6 +609,26 @@ int main1 (argc, argv)
     return exit_code; /* just to avoid lint warning */
 }
 
+char** copy_array(int argc, char* argv[]) {
+  char** new_argv = malloc((argc+1) * sizeof *new_argv);
+  for(int i = 0; i < argc; ++i)
+  {
+      size_t length = strlen(argv[i])+1;
+      new_argv[i] = malloc(length);
+      memcpy(new_argv[i], argv[i], length);
+  }
+  new_argv[argc] = NULL;
+  return new_argv;
+}
+
+void free_array(int argc, char** new_argv) {
+  for(int i = 0; i < argc; ++i)
+  {
+    free(new_argv[i]);
+  }
+  free(new_argv);
+}
+
 /* ========================================================================
  * CK main wrapper
  */
@@ -628,20 +648,27 @@ int main(int argc, char* argv[])
 
   if (getenv("CT_REPEAT_MAIN")!=NULL) ct_repeat_max=atol(getenv("CT_REPEAT_MAIN"));
           
+  char** argv_copy = copy_array(argc, argv);
+
 #ifdef OPENME
   openme_callback("KERNEL_START", NULL);
 #endif
 #ifdef XOPENME
   xopenme_clock_start(0);
 #endif
-  for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++)
-    ct_return=main1(argc, argv);
+  for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
+    char** argv_tmp = copy_array(argc, argv_copy);
+    ct_return=main1(argc, argv_tmp);
+    free_array(argc, argv_tmp);
+  }
 #ifdef XOPENME
   xopenme_clock_end(0);
 #endif
 #ifdef OPENME
   openme_callback("KERNEL_END", NULL);
 #endif
+
+  free_array(argc, argv_copy);
 
 #ifdef XOPENME
   xopenme_dump_state();
@@ -1766,7 +1793,7 @@ local void do_exit(exitcode)
 {
     static int in_exit = 0;
 
-    if (in_exit) exit(exitcode);
+    //if (in_exit) exit(exitcode);
     in_exit = 1;
     if (env != NULL)  free(env),  env  = NULL;
     if (args != NULL) free((char*)args), args = NULL;
@@ -1780,7 +1807,7 @@ local void do_exit(exitcode)
     FREE(tab_prefix0);
     FREE(tab_prefix1);
 #endif
-    exit(exitcode);
+    //exit(exitcode);
 }
 
 /* ========================================================================

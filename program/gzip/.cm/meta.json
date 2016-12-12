@@ -48,7 +48,7 @@
         ], 
         "run_output_files": [
           "tmp-output1.tmp", 
-          "decoded-file"
+          "tmp-output2.tmp"
         ]
       }
     }, 
@@ -73,7 +73,7 @@
         ], 
         "run_output_files": [
           "tmp-output1.tmp", 
-          "encoded-file"
+          "tmp-output2.tmp"
         ]
       }
     }
