@@ -428,10 +428,23 @@ local void version()
 }
 
 /* ======================================================================== */
-int main1 (argc, argv)
+int main (argc, argv)
     int argc;
     char **argv;
 {
+  long ct_repeat=0;
+  long ct_repeat_max=1;
+
+#ifdef OPENME
+  openme_init(NULL,NULL,NULL,0);
+  openme_callback("PROGRAM_START", NULL);
+#endif
+#ifdef XOPENME
+  xopenme_init(1,0);
+#endif
+
+  if (getenv("CT_REPEAT_MAIN")!=NULL) ct_repeat_max=atol(getenv("CT_REPEAT_MAIN"));
+          
     int file_count;     /* number of files to precess */
     int proglen;        /* length of progname */
     int optc;           /* current option */
@@ -591,77 +604,29 @@ int main1 (argc, argv)
     ALLOC(ush, tab_prefix1, 1L<<(BITS-1));
 #endif
 
-    /* And get to work */
-    if (file_count != 0) {
-	if (to_stdout && !test && !list && (!decompress || !ascii)) {
-	    SET_BINARY_MODE(fileno(stdout));
-	}
-        while (optind < argc) {
-	    treat_file(argv[optind++]);
-	}
-    } else {  /* Standard input */
-	treat_stdin();
-    }
-    if (list && !quiet && file_count > 1) {
-	do_list(-1, -1); /* print totals */
-    }
-    do_exit(exit_code);
-    return exit_code; /* just to avoid lint warning */
-}
-
-char** copy_array(int argc, char* argv[]) {
-  char** new_argv = malloc((argc+1) * sizeof *new_argv);
-  int i;
-  for(i = 0; i < argc; ++i)
-  {
-      size_t length = strlen(argv[i])+1;
-      new_argv[i] = malloc(length);
-      memcpy(new_argv[i], argv[i], length);
-  }
-  new_argv[argc] = NULL;
-  return new_argv;
-}
-
-void free_array(int argc, char** new_argv) {
-  int i;
-  for(i = 0; i < argc; ++i)
-  {
-    free(new_argv[i]);
-  }
-  free(new_argv);
-}
-
-/* ========================================================================
- * CK main wrapper
- */
-int main(int argc, char* argv[])
-{
-  long ct_repeat=0;
-  long ct_repeat_max=1;
-  int ct_return=0;
-
-#ifdef OPENME
-  openme_init(NULL,NULL,NULL,0);
-  openme_callback("PROGRAM_START", NULL);
-#endif
-#ifdef XOPENME
-  xopenme_init(1,0);
-#endif
-
-  if (getenv("CT_REPEAT_MAIN")!=NULL) ct_repeat_max=atol(getenv("CT_REPEAT_MAIN"));
-          
-  char** argv_copy = copy_array(argc, argv);
-
 #ifdef OPENME
   openme_callback("KERNEL_START", NULL);
 #endif
 #ifdef XOPENME
   xopenme_clock_start(0);
 #endif
+
+  if (file_count != 0) {
+    if (to_stdout && !test && !list && (!decompress || !ascii)) {
+        SET_BINARY_MODE(fileno(stdout));
+    }
+  }
+  int optind_prev = optind;
   for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
-    char** argv_tmp = copy_array(argc, argv_copy);
-    ct_return=main1(argc, argv_tmp);
-    free_array(argc, argv_tmp);
+      /* And get to work */
+      if (file_count != 0) {
+        optind = optind_prev;
+        while (optind < argc) {
+    	    treat_file(argv[optind++]);
+      	}
+      } else {  /* Standard input */
+        	treat_stdin();
+      }
   }
 #ifdef XOPENME
   xopenme_clock_end(0);
@@ -669,9 +634,9 @@ int main(int argc, char* argv[])
 #ifdef OPENME
   openme_callback("KERNEL_END", NULL);
 #endif
-
-  free_array(argc, argv_copy);
-
+ //    if (list && !quiet && file_count > 1) {
+	// do_list(-1, -1); /* print totals */
+ //    }
 #ifdef XOPENME
   xopenme_dump_state();
   xopenme_finish();
@@ -680,7 +645,8 @@ int main(int argc, char* argv[])
   openme_callback("PROGRAM_END", NULL);
 #endif
 
-  return ct_return;
+    do_exit(exit_code);
+    return exit_code; /* just to avoid lint warning */
 }
 
 /* ========================================================================
@@ -1795,7 +1761,7 @@ local void do_exit(exitcode)
 {
     static int in_exit = 0;
 
-    //if (in_exit) exit(exitcode);
+    if (in_exit) exit(exitcode);
     in_exit = 1;
     if (env != NULL)  free(env),  env  = NULL;
     if (args != NULL) free((char*)args), args = NULL;
@@ -1809,7 +1775,7 @@ local void do_exit(exitcode)
     FREE(tab_prefix0);
     FREE(tab_prefix1);
 #endif
-    //exit(exitcode);
+    exit(exitcode);
 }
 
 /* ========================================================================
