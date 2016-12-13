@@ -44,6 +44,7 @@
         "run_cmd_out1": "tmp-output1.tmp", 
         "run_cmd_out2": "tmp-output2.tmp",
         "run_correctness_output_files": [
+          "decoded-file",
           "tmp-output1.tmp", 
           "tmp-output2.tmp"
         ], 
@@ -71,6 +72,7 @@
         "run_cmd_out1": "tmp-output1.tmp", 
         "run_cmd_out2": "tmp-output2.tmp",
         "run_correctness_output_files": [
+          "encoded-file",
           "tmp-output1.tmp", 
           "tmp-output2.tmp"
         ], 
