@@ -1,0 +1,10 @@
+{
+  "dataset_files": [
+    "data.y4m.gz"
+  ], 
+  "tags": [
+    "gzip", 
+    "archiver", 
+    "dataset"
+  ]
+}
