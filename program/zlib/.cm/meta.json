@@ -29,8 +29,7 @@
         "deflated", 
         "zlib", 
         "archiver", 
-        "dataset", 
-        "small"
+        "dataset"
       ], 
       "hot_functions": [
         {
@@ -56,8 +55,7 @@
     }, 
     "encode": {
       "dataset_tags": [
-        "dataset", 
-        "small"
+        "dataset"
       ], 
       "hot_functions": [
         {
