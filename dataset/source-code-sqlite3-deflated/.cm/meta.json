@@ -1,0 +1,12 @@
+{
+  "dataset_files": [
+    "sqlite3.c.deflated", 
+    "sqlite3.h.deflated"
+  ], 
+  "tags": [
+    "deflated", 
+    "zlib", 
+    "archiver", 
+    "dataset"
+  ]
+}
