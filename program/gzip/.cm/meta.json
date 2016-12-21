@@ -90,7 +90,6 @@
     "automotive", 
     "benchmark", 
     "program", 
-    "small", 
     "crowd-tuning"
   ],
   "use_compile_script": "yes",
