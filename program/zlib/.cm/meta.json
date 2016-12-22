@@ -110,8 +110,7 @@
     "lang-c", 
     "automotive", 
     "benchmark", 
-    "program", 
-    "small", 
+    "program",
     "crowd-tuning"
   ], 
   "target_file": "a"
