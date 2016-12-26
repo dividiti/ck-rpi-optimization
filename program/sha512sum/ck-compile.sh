@@ -21,4 +21,4 @@ make -j 4
 
 set +x
 
-cp src/sha512sum ../../a.out
+cp src/sha512sum ../a.out
