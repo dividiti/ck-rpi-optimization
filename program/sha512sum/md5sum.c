@@ -1054,18 +1054,16 @@ main (int argc, char **argv)
     {
       char *file = *operandp;
 
-  for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
+      for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
+        if (! digest_file (file, &file_is_binary, bin_buffer, &missing))
+          ok = false;
+      }
 
-      if (do_check)
-        ok &= digest_check (file);
-      else
+      if (!do_check)
         {
           int file_is_binary = binary;
           bool missing;
 
-          if (! digest_file (file, &file_is_binary, bin_buffer, &missing))
-            ok = false;
-          else
             {
               /* We don't really need to escape, and hence detect, the '\\'
                  char, and not doing so should be both forwards and backwards
@@ -1115,7 +1113,7 @@ main (int argc, char **argv)
               putchar ('\n');
             }
         }
-      }
+      
     }
 
 #ifdef XOPENME
