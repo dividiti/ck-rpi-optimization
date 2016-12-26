@@ -3,7 +3,7 @@
 NAME="coreutils-8.26"
 
 rm -rf "$NAME"
-tar -xvzf "../$NAME.tar.xz" >/dev/null 2>&1
+tar -xf "../$NAME.tar.xz" >/dev/null 2>&1
 
 cp ../md5sum.c "$NAME/src"
 cd "$NAME"
