@@ -1053,17 +1053,15 @@ main (int argc, char **argv)
   for (char **operandp = argv + optind; operandp < operand_lim; operandp++)
     {
       char *file = *operandp;
+      int file_is_binary = binary;
+      bool missing;
 
       for (ct_repeat=0; ct_repeat<ct_repeat_max; ct_repeat++) {
         if (! digest_file (file, &file_is_binary, bin_buffer, &missing))
           ok = false;
       }
 
-      if (!do_check)
-        {
-          int file_is_binary = binary;
-          bool missing;
-
+      if (ok && !do_check)
             {
               /* We don't really need to escape, and hence detect, the '\\'
                  char, and not doing so should be both forwards and backwards
@@ -1112,7 +1110,6 @@ main (int argc, char **argv)
 
               putchar ('\n');
             }
-        }
       
     }
 
