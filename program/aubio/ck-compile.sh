@@ -19,7 +19,7 @@ export CFLAGS="${CK_PROG_COMPILER_VARS} -I${CK_ENV_LIB_RTL_XOPENME_INCLUDE} ${CK
 export LDFLAGS="${CK_PROG_LINKER_LIBS} ${CK_EXTRA_LIB_M}"
 export LIBS="${CK_PROG_LINKER_LIBS} ${CK_EXTRA_LIB_M}"
 
-./waf configure
-./waf build
+./waf -v configure
+./waf -v build
 
 cp build/examples/aubio* ../
