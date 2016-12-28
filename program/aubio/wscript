@@ -118,26 +118,26 @@ def configure(ctx):
         target_platform = ctx.options.target_platform
     ctx.env['DEST_OS'] = target_platform
 
-    if ctx.env.CC_NAME != 'msvc':
-        ctx.env.CFLAGS += ['-g', '-Wall', '-Wextra']
-    else:
-        ctx.env.CFLAGS += ['/W4', '/MD']
-        ctx.env.CFLAGS += ['/D_CRT_SECURE_NO_WARNINGS']
+    # if ctx.env.CC_NAME != 'msvc':
+    #     ctx.env.CFLAGS += ['-g', '-Wall', '-Wextra']
+    # else:
+    #     ctx.env.CFLAGS += ['/W4', '/MD']
+    #     ctx.env.CFLAGS += ['/D_CRT_SECURE_NO_WARNINGS']
 
     ctx.check_cc(lib='m', uselib_store='M', mandatory=False)
 
-    if target_platform not in ['win32', 'win64']:
-        ctx.env.CFLAGS += ['-fPIC']
-    else:
-        ctx.define('HAVE_WIN_HACKS', 1)
-        ctx.env['cshlib_PATTERN'] = 'lib%s.dll'
+    # if target_platform not in ['win32', 'win64']:
+    #     ctx.env.CFLAGS += ['-fPIC']
+    # else:
+    #     ctx.define('HAVE_WIN_HACKS', 1)
+    #     ctx.env['cshlib_PATTERN'] = 'lib%s.dll'
 
-    if target_platform == 'darwin' and ctx.options.enable_fat:
-        ctx.env.CFLAGS += ['-arch', 'i386', '-arch', 'x86_64']
-        ctx.env.LINKFLAGS += ['-arch', 'i386', '-arch', 'x86_64']
-        MINSDKVER="10.4"
-        ctx.env.CFLAGS += [ '-mmacosx-version-min=' + MINSDKVER ]
-        ctx.env.LINKFLAGS += [ '-mmacosx-version-min=' + MINSDKVER ]
+    # if target_platform == 'darwin' and ctx.options.enable_fat:
+    #     ctx.env.CFLAGS += ['-arch', 'i386', '-arch', 'x86_64']
+    #     ctx.env.LINKFLAGS += ['-arch', 'i386', '-arch', 'x86_64']
+    #     MINSDKVER="10.4"
+    #     ctx.env.CFLAGS += [ '-mmacosx-version-min=' + MINSDKVER ]
+    #     ctx.env.LINKFLAGS += [ '-mmacosx-version-min=' + MINSDKVER ]
 
     if target_platform in [ 'darwin', 'ios', 'iosimulator']:
         if (ctx.options.enable_apple_audio != False):
@@ -148,45 +148,45 @@ def configure(ctx):
             ctx.define('HAVE_ACCELERATE', 1)
             ctx.env.FRAMEWORK += ['Accelerate']
 
-    if target_platform in [ 'ios', 'iosimulator' ]:
-        MINSDKVER="6.1"
-        ctx.env.CFLAGS += ['-std=c99']
-        if (ctx.options.enable_apple_audio != False):
-            ctx.define('HAVE_AUDIO_UNIT', 1)
-            #ctx.env.FRAMEWORK += ['CoreFoundation', 'AudioToolbox']
-        if target_platform == 'ios':
-            DEVROOT = "/Applications/Xcode.app/Contents"
-            DEVROOT += "/Developer/Platforms/iPhoneOS.platform/Developer"
-            SDKROOT = "%(DEVROOT)s/SDKs/iPhoneOS.sdk" % locals()
-            ctx.env.CFLAGS += [ '-fembed-bitcode' ]
-            ctx.env.CFLAGS += [ '-arch', 'arm64' ]
-            ctx.env.CFLAGS += [ '-arch', 'armv7' ]
-            ctx.env.CFLAGS += [ '-arch', 'armv7s' ]
-            ctx.env.LINKFLAGS += [ '-arch', 'arm64' ]
-            ctx.env.LINKFLAGS += ['-arch', 'armv7']
-            ctx.env.LINKFLAGS += ['-arch', 'armv7s']
-            ctx.env.CFLAGS += [ '-miphoneos-version-min=' + MINSDKVER ]
-            ctx.env.LINKFLAGS += [ '-miphoneos-version-min=' + MINSDKVER ]
-        else:
-            DEVROOT = "/Applications/Xcode.app/Contents"
-            DEVROOT += "/Developer/Platforms/iPhoneSimulator.platform/Developer"
-            SDKROOT = "%(DEVROOT)s/SDKs/iPhoneSimulator.sdk" % locals()
-            ctx.env.CFLAGS += [ '-arch', 'i386' ]
-            ctx.env.CFLAGS += [ '-arch', 'x86_64' ]
-            ctx.env.LINKFLAGS += ['-arch', 'i386']
-            ctx.env.LINKFLAGS += ['-arch', 'x86_64']
-            ctx.env.CFLAGS += [ '-mios-simulator-version-min=' + MINSDKVER ]
-            ctx.env.LINKFLAGS += [ '-mios-simulator-version-min=' + MINSDKVER ]
-        ctx.env.CFLAGS += [ '-isysroot' , SDKROOT]
-        ctx.env.LINKFLAGS += [ '-isysroot' , SDKROOT]
+    # if target_platform in [ 'ios', 'iosimulator' ]:
+    #     MINSDKVER="6.1"
+    #     ctx.env.CFLAGS += ['-std=c99']
+    #     if (ctx.options.enable_apple_audio != False):
+    #         ctx.define('HAVE_AUDIO_UNIT', 1)
+    #         #ctx.env.FRAMEWORK += ['CoreFoundation', 'AudioToolbox']
+    #     if target_platform == 'ios':
+    #         DEVROOT = "/Applications/Xcode.app/Contents"
+    #         DEVROOT += "/Developer/Platforms/iPhoneOS.platform/Developer"
+    #         SDKROOT = "%(DEVROOT)s/SDKs/iPhoneOS.sdk" % locals()
+    #         ctx.env.CFLAGS += [ '-fembed-bitcode' ]
+    #         ctx.env.CFLAGS += [ '-arch', 'arm64' ]
+    #         ctx.env.CFLAGS += [ '-arch', 'armv7' ]
+    #         ctx.env.CFLAGS += [ '-arch', 'armv7s' ]
+    #         ctx.env.LINKFLAGS += [ '-arch', 'arm64' ]
+    #         ctx.env.LINKFLAGS += ['-arch', 'armv7']
+    #         ctx.env.LINKFLAGS += ['-arch', 'armv7s']
+    #         ctx.env.CFLAGS += [ '-miphoneos-version-min=' + MINSDKVER ]
+    #         ctx.env.LINKFLAGS += [ '-miphoneos-version-min=' + MINSDKVER ]
+    #     else:
+    #         DEVROOT = "/Applications/Xcode.app/Contents"
+    #         DEVROOT += "/Developer/Platforms/iPhoneSimulator.platform/Developer"
+    #         SDKROOT = "%(DEVROOT)s/SDKs/iPhoneSimulator.sdk" % locals()
+    #         ctx.env.CFLAGS += [ '-arch', 'i386' ]
+    #         ctx.env.CFLAGS += [ '-arch', 'x86_64' ]
+    #         ctx.env.LINKFLAGS += ['-arch', 'i386']
+    #         ctx.env.LINKFLAGS += ['-arch', 'x86_64']
+    #         ctx.env.CFLAGS += [ '-mios-simulator-version-min=' + MINSDKVER ]
+    #         ctx.env.LINKFLAGS += [ '-mios-simulator-version-min=' + MINSDKVER ]
+    #     ctx.env.CFLAGS += [ '-isysroot' , SDKROOT]
+    #     ctx.env.LINKFLAGS += [ '-isysroot' , SDKROOT]
 
-    if target_platform == 'emscripten':
-        import os.path
-        ctx.env.CFLAGS += [ '-I' + os.path.join(os.environ['EMSCRIPTEN'], 'system', 'include') ]
-        ctx.env.CFLAGS += ['-Oz']
-        ctx.env.cprogram_PATTERN = "%s.js"
-        if (ctx.options.enable_atlas != True):
-            ctx.options.enable_atlas = False
+    # if target_platform == 'emscripten':
+    #     import os.path
+    #     ctx.env.CFLAGS += [ '-I' + os.path.join(os.environ['EMSCRIPTEN'], 'system', 'include') ]
+    #     ctx.env.CFLAGS += ['-Oz']
+    #     ctx.env.cprogram_PATTERN = "%s.js"
+    #     if (ctx.options.enable_atlas != True):
+    #         ctx.options.enable_atlas = False
 
     # check support for C99 __VA_ARGS__ macros
     check_c99_varargs = '''
