@@ -8,6 +8,7 @@ cp ../waf "$NAME"
 
 cp ../aubionotes.c "$NAME/examples"
 cp ../utils.c "$NAME/examples"
+cp ../wscript "$NAME/"
 cd "$NAME"
 
 set -x
