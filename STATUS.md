@@ -1,5 +1,5 @@
 
-## Search status
+# Search status
 
 A number of experiments have been made on RPi 3 Model B (rev. a02082) and RPi B+ (rev. 0013). The detailed results
 (experiment directories with point descriptions and all required information) are available archived in files 
