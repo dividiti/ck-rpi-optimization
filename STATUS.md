@@ -22,6 +22,13 @@ Some recap is below:
 
         -O3 -fgcse-sm -fno-move-loop-invariants -fno-tree-forwprop -funroll-all-loops -fno-web 
 
+1. Found a possible issue in GCC 4.9.2: it fails to compile [aubio][] with the following message/flags. GCC6 works fine.
+
+        [57/67] Compiling examples/aubiotrack.c
+        16:22:40 runner ['gcc-4.9', '-DXOPENME', '-I/home/pi/CK-TOOLS/lib-rtl-xopenme-0.3-gcc-4.9.2-linux-32/include', '-O3', '-fbranch-probabilities', '-ffloat-store', '-fif-conversion2', '-findirect-inlining', '-fno-ipa-pure-const', '-floop-strip-mine', '-floop-nest-optimize', '-fmodulo-sched', '-fno-branch-count-reg', '-fsched-interblock', '-fno-sched-spec-load-dangerous', '-fselective-scheduling', '-ftracer', '-ftree-copy-prop', '-fno-tree-loop-if-convert-stores', '-fno-tree-phiprop', '-ftree-pre', '-fno-tree-sra', '-fno-tree-vrp', '-fno-unsafe-math-optimizations', '-fno-unswitch-loops', '-fno-vect-cost-model', '-fuse-linker-plugin', '-ffp-contract=fast', '-fPIC', '-I/home/pi/CK/ck-zlib/program/aubio/tmp-ck-B25KxH/aubio-0.4.3/build/src', '-I/home/pi/CK/ck-zlib/program/aubio/tmp-ck-B25KxH/aubio-0.4.3/src', '-DAUBIO_PREFIX="/usr/local"', '-DPACKAGE="aubio"', '../examples/aubiotrack.c', '-c', '-o', '/home/pi/CK/ck-zlib/program/aubio/tmp-ck-B25KxH/aubio-0.4.3/build/examples/aubiotrack.c.7.o']
+        [58/67] Compiling aubio.pc.in
+        *** Error in `/usr/lib/gcc/arm-linux-gnueabihf/4.9/cc1': corrupted double-linked list: 0x0170f5ce ***
+
 [zlib]: http://www.zlib.net/
 [gzip]: http://www.gzip.org/
 [7z]: http://www.7-zip.org/
