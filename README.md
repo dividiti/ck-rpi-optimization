@@ -1,6 +1,3 @@
-Collaborative, CK-powered optimization of zlib-based applications
-=================================================================
-
 [![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-powered-by-ck.png)](http://cKnowledge.org)
 [![logo](https://github.com/ctuning/ck-guide-images/blob/master/logo-validated-by-the-community-simple.png)](http://cTuning.org)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
@@ -8,13 +5,15 @@ Collaborative, CK-powered optimization of zlib-based applications
 Introduction
 ============
 
+
+
 License
 =======
 * BSD, 3-clause 
 
 Status
 ======
-Heavy development
+Relatively stable
 
 Prerequisites
 =============
@@ -34,7 +33,7 @@ Install CK:
 Install this CK repository:
 
 ```
- $ ck pull repo --url=https://github.com/dividiti/ck-zlib
+ $ ck pull repo --url=https://github.com/dividiti/ck-rpi-optimization
 ```
 
 Update all CK repositories at any time
