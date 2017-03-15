@@ -1,0 +1,88 @@
+{
+    "build_compiler_vars": {
+        "XOPENME": ""
+    },
+    "compile_cmds": {
+        "default": {
+            "cmd": "../ck-compile$#script_ext#$"
+        }
+    }, 
+    "compile_deps": {
+        "compiler": {
+            "sort": 10, 
+            "local": "yes", 
+            "name": "C++ compiler", 
+            "tags": "compiler,lang-cpp"
+        },
+        "xopenme": {
+            "sort": 20, 
+            "local": "yes", 
+            "name": "xOpenME library", 
+            "tags": "lib,xopenme"
+        }        
+    },
+    "compiler_env": "CK_CXX",
+    "data_name": "unrar", 
+    "extra_ld_vars": "$<<CK_EXTRA_LIB_M>>$", 
+    "process_in_tmp": "yes", 
+    "program": "yes", 
+    "run_cmds": {
+        "unrar_stdout": {
+            "dataset_tags": [
+                "unrar", 
+                "archiver", 
+                "dataset"
+            ],
+            "ignore_return_code": "no", 
+            "run_time": {
+                "fine_grain_timer_file": "tmp-ck-timer.json",
+                "run_cmd_main": "$#BIN_FILE#$ p $#dataset_path#$$#dataset_filename#$ data.txt",
+                "run_cmd_out1": "tmp-stdout.tmp", 
+                "run_cmd_out2": "tmp-stderr.tmp",
+                "run_output_files": [
+                    "tmp-ck-timer.json"
+                ],
+                "run_correctness_output_files": [
+                    "tmp-stdout.tmp", 
+                    "tmp-stderr.tmp"
+                ]
+            }
+        },
+        "unrar": {
+            "dataset_tags": [
+                "unrar", 
+                "archiver", 
+                "dataset"
+            ],
+            "ignore_return_code": "no", 
+            "run_time": {
+                "fine_grain_timer_file": "tmp-ck-timer.json",
+                "run_cmd_main": "$#BIN_FILE#$ e -y $#dataset_path#$$#dataset_filename#$ data.txt .",
+                "run_cmd_out1": "tmp-stdout.tmp", 
+                "run_cmd_out2": "tmp-stderr.tmp",
+                "run_output_files": [
+                    "data.txt", 
+                    "tmp-ck-timer.json"
+                ],
+                "run_correctness_output_files": [
+                    "data.txt", 
+                    "tmp-stderr.tmp"
+                ]
+            }
+        }
+    },
+    "run_vars": {
+        "CT_REPEAT_MAIN": "1"
+    }, 
+    "skip_bin_ext": "yes", 
+    "tags": [
+        "unrar", 
+        "lang-cpp", 
+        "automotive", 
+        "benchmark", 
+        "program", 
+        "crowd-tuning"
+    ], 
+    "target_file": "a.out", 
+    "use_compile_script": "yes"
+}
