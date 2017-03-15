@@ -1,15 +1,15 @@
 {
-  "data_alias": "ck-zlib",
+  "data_alias": "ck-rpi-optimization",
   "dict": {
     "shared": "git",
-    "url": "https://github.com/dividiti/ck-zlib",
+    "url": "https://github.com/dividiti/ck-rpi-optimization",
      "repo_deps": [
        {
          "repo_uoa": "ck-crowdtuning"
        }
      ]
   },
-  "data_uoa": "ck-zlib",
-  "data_name": "Collaborative, CK-powered optimization of zlib-based applications",
+  "data_uoa": "ck-rpi-optimization",
+  "data_name": "CK repository to crowdsource optimization of benchmarks, kernels and realistic workloads across Raspberry Pi devices provided by volunteers (starting from compiler flag autotuning)",
   "data_uid": "4439c9443bbab749"
 }
