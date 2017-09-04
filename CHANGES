@@ -1,4 +1,5 @@
 2017.09.04 - added hotspots
+           - extracted MILEPOST static features
 
 2017.07.25 - moved experiment-rpi-rev-0013.zip & experiment-rpi-rev-a02082.zip to https://github.com/ctuning/ck-rpi-optimization-results-xored
 
