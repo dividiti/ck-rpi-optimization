@@ -29,6 +29,14 @@
         "dataset"
       ], 
       "hot_functions": [
+        {
+          "name": "xShiftSubst", 
+          "percent": "64"
+        },
+        {
+          "name": "xMixAdd", 
+          "percent": "31"
+        }
       ], 
       "ignore_return_code": "no", 
       "run_time": {

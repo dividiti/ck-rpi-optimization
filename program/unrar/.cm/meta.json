@@ -33,6 +33,12 @@
                 "archiver", 
                 "dataset"
             ],
+            "hot_functions": [
+              {
+                "name": "Unpack::Unpack29(bool)", 
+                "percent": "79"
+              }
+            ], 
             "ignore_return_code": "no", 
             "run_time": {
                 "fine_grain_timer_file": "tmp-ck-timer.json",
@@ -54,6 +60,12 @@
                 "archiver", 
                 "dataset"
             ],
+            "hot_functions": [
+              {
+                "name": "Unpack::Unpack29(bool)", 
+                "percent": "79"
+              }
+            ], 
             "ignore_return_code": "no", 
             "run_time": {
                 "fine_grain_timer_file": "tmp-ck-timer.json",

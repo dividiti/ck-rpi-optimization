@@ -32,6 +32,16 @@
       "dataset_tags": [
         "dataset"
       ], 
+      "hot_functions": [
+        {
+          "name": "LenEnc_Encode2", 
+          "percent": "45"
+        },
+        {
+          "name": "GetMatchesSpec1", 
+          "percent": "22"
+        }
+      ], 
       "ignore_return_code": "no", 
       "run_time": {
         "fine_grain_timer_file": "tmp-ck-timer.json", 

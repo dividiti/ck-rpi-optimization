@@ -28,7 +28,20 @@
       "dataset_tags": [
         "dataset"
       ], 
-      "hot_functions": [], 
+      "hot_functions": [
+        {
+          "name": "keccak_theta", 
+          "percent": "48"
+        },
+        {
+          "name": "keccak_chi", 
+          "percent": "39"
+        },
+        {
+          "name": "rhash_sha3_permutation", 
+          "percent": "8"
+        }
+      ], 
       "ignore_return_code": "no", 
       "run_time": {
         "fine_grain_timer_file": "tmp-ck-timer.json", 
