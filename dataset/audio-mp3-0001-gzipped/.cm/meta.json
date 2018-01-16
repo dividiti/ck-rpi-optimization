@@ -1,11 +1,11 @@
 {
   "dataset_files": [
     "data.mp3.gz"
-  ], 
+  ],
   "tags": [
-    "gzip", 
-    "archiver", 
-    "small", 
+    "gzip",
+    "archiver",
+    "small",
     "dataset"
   ]
 }

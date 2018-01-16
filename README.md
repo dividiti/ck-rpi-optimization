@@ -5,15 +5,22 @@
 Introduction
 ============
 
-
+Demonstration of customizable Collective Knowledge autotuning workflows 
+with a portable package manager to teach students how to compile, run, 
+benchmark and optimize various workloads across diverse platforms
+in a unified way!
 
 License
 =======
-* BSD, 3-clause 
+* BB CY 4.0
+
+Copyright
+=========
+2016-2018 (c) dividiti
 
 Status
 ======
-Relatively stable
+Stable
 
 Prerequisites
 =============
@@ -40,3 +47,27 @@ Update all CK repositories at any time
 ```
  $ ck pull all
 ```
+
+List available programs and data sets
+
+```
+ $ ck ls ck-rpi-optimization:program:*
+ $ ck ls ck-rpi-optimization:dataset:*
+```
+
+Compile a given program on your platform via unified CK autotuning workflow with portable package manager:
+```
+ $ ck compile program:rhash --speed
+```
+
+Run a given program via unified CK autotuning workflow:
+
+```
+ $ ck run program:rhash
+```
+
+More details
+============
+
+Please check out a related report with shared aritfacts in another CK repository:
+* https://github.com/ctuning/ck-rpi-optimization-results

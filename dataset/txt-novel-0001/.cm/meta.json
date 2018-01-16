@@ -1,10 +1,10 @@
 {
   "dataset_files": [
     "data.txt"
-  ], 
+  ],
   "tags": [
-    "dataset", 
-    "doc", 
+    "dataset",
+    "doc",
     "txt"
   ]
 }

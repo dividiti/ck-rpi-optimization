@@ -1,12 +1,12 @@
 {
   "dataset_files": [
     "data"
-  ], 
+  ],
   "tags": [
-    "deflated", 
-    "zlib", 
-    "archiver", 
-    "small", 
+    "deflated",
+    "zlib",
+    "archiver",
+    "small",
     "dataset"
   ]
 }

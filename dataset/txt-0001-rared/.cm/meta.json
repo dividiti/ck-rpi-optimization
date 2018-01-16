@@ -1,11 +1,11 @@
 {
   "dataset_files": [
     "data.txt.rar"
-  ], 
+  ],
   "tags": [
     "unrar",
-    "archiver", 
-    "small", 
+    "archiver",
+    "small",
     "dataset"
   ]
 }

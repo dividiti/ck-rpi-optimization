@@ -1,29 +1,34 @@
 {
-  "backup_data_uid": "dba9c44de68b633c", 
-  "backup_module_uid": "b0ac08fe1d3c2615", 
-  "backup_module_uoa": "program", 
+  "backup_data_uid": "dba9c44de68b633c",
+  "backup_module_uid": "b0ac08fe1d3c2615",
+  "backup_module_uoa": "program",
   "cm_outdated": {
     "cm_access_control": {
-      "comments_groups": "admin", 
-      "read_groups": "all", 
+      "comments_groups": "admin",
+      "read_groups": "all",
       "write_groups": "owner"
-    }, 
+    },
     "powered_by": {
-      "name": "Collective Mind Engine", 
+      "name": "Collective Mind Engine",
       "version": "1.0.1977.beta"
     }
-  }, 
+  },
   "control": {
-    "author_uoa": "74c2480dcec9e85d", 
-    "engine": "CM", 
-    "iso_datetime": "2016-12-15T17:04:46.539441", 
+    "author": "dividiti",
+    "author_email": "info@dividiti.com",
+    "author_uoa": "74c2480dcec9e85d",
+    "author_webpage": "http://dividiti.com",
+    "copyright": "2016-2018 (c) dividiti",
+    "engine": "CM",
+    "iso_datetime": "2016-12-15T17:04:46.539441",
+    "license": "CC BY 4.0",
     "version": [
-      "1", 
-      "8", 
-      "4", 
+      "1",
+      "8",
+      "4",
       "2"
     ]
-  }, 
-  "data_name": "7z", 
+  },
+  "data_name": "7z",
   "description": "cBench benchmark collection: http://cTuning.org/cbench"
 }

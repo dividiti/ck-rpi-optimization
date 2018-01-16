@@ -1,10 +1,10 @@
 {
   "dataset_files": [
     "data.y4m"
-  ], 
+  ],
   "tags": [
-    "dataset", 
-    "video", 
+    "dataset",
+    "video",
     "y4m"
   ]
 }

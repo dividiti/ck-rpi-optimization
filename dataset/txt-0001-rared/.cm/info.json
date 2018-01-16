@@ -1,16 +1,21 @@
 {
-  "backup_data_uid": "3879e4863a6a45c4", 
-  "backup_module_uid": "8a7141c59cd335f5", 
-  "backup_module_uoa": "dataset", 
+  "backup_data_uid": "a41dc7e0b3d47349",
+  "backup_module_uid": "8a7141c59cd335f5",
+  "backup_module_uoa": "dataset",
   "control": {
-    "engine": "CK", 
-    "iso_datetime": "2017-01-12T14:07:31.118442", 
+    "author": "dividiti",
+    "author_email": "info@dividiti.com",
+    "author_webpage": "http://dividiti.com",
+    "copyright": "2016-2018 (c) dividiti",
+    "engine": "CK",
+    "iso_datetime": "2017-01-12T14:07:31.118442",
+    "license": "CC BY 4.0",
     "version": [
-      "1", 
-      "8", 
-      "6", 
+      "1",
+      "8",
+      "6",
       "1"
     ]
-  }, 
+  },
   "data_name": "txt-0001-rared"
 }

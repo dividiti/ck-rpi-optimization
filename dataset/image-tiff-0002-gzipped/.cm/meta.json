@@ -1,11 +1,11 @@
 {
   "dataset_files": [
     "data.tiff.gz"
-  ], 
+  ],
   "tags": [
-    "gzip", 
-    "archiver", 
-    "large", 
+    "gzip",
+    "archiver",
+    "large",
     "dataset"
   ]
 }
